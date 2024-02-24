@@ -1,0 +1,32 @@
+import itertools
+from itertools import permutations 
+
+ingredient_names = ['Sprinkles','PeanutButter','Frosting','Sugar']
+all_recipes = itertools.combinations_with_replacement(ingredient_names, 100)
+total1 = []
+total2 = []
+for x in all_recipes:
+    spr = x.count('Sprinkles')
+    but = x.count('PeanutButter')
+    fro = x.count('Frosting')
+    sug = x.count('Sugar')
+    capacity = (spr*5) + (but*-1) + (fro*0) +(sug*-1)
+    durability = (spr*-1) + (but*3) + (fro*-1) +(sug*0)
+    flavor = (spr*0) + (but*0) + (fro*4) +(sug*0)
+    texture = (spr*0) + (but*0) + (fro*0) +(sug*2)
+    calories = (spr*5) + (but*1) + (fro*6) +(sug*8)
+    if calories == 500:
+        if capacity <= 0 or durability <= 0 or flavor <= 0 or texture <= 0:
+            total2.append(0)
+        else:
+            tot = capacity * durability * flavor * texture
+            total2.append(tot) 
+    if capacity <= 0 or durability <= 0 or flavor <= 0 or texture <= 0:
+        total1.append(0)
+    else:
+        tot = capacity * durability * flavor * texture
+        total1.append(tot) 
+
+
+print('Part 1',max(total1))
+print('Part 2',max(total2))
