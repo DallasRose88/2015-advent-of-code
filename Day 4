@@ -1,0 +1,16 @@
+import itertools
+from itertools import count
+import hashlib
+#Part 1 
+result = 'bgvyzdsv' 
+for x in count(1):
+    re= result + str(x)    
+    if hashlib.md5(re.encode('utf-8')).hexdigest()[:5] == '00000':
+        print('Part 1',x)        
+        break
+#Part 2
+for x in count(1):
+    re= result + str(x)    
+    if hashlib.md5(re.encode('utf-8')).hexdigest()[:6] == '000000':
+        print('Part 2',x)        
+        break
