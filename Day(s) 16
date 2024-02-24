@@ -1,0 +1,66 @@
+import re
+f = open('code','r')
+
+perfumes= 1
+for x in f:
+    count = 0
+    count2 = 0
+    split = re.split(r'\s|:|,',x)
+    if 'children' in split:
+        place = (split.index('children'))
+        if split[place + 2] == '3':
+            count += 1 
+            count2 += 1
+    if 'cats' in split:
+        place = (split.index('cats'))
+        if split[place + 2] == '7':
+            count += 1  
+        if int(split[place + 2]) > 7:
+            count2 += 1  
+    if 'samoyeds' in split:
+        place = (split.index('samoyeds'))
+        if split[place + 2] == '2':
+            count += 1 
+            count2 += 1
+    if 'pomeranians' in split:
+        place = (split.index('pomeranians'))
+        if split[place + 2] == '3':
+            count += 1 
+        if int(split[place + 2]) < 3:
+            count2 += 1 
+    if 'goldfish' in split:
+        place = (split.index('goldfish'))
+        if split[place + 2] == '5':
+            count += 1
+        if int(split[place + 2]) < 5:
+            count2 += 1
+    if 'trees' in split:
+        place = (split.index('trees'))
+        if split[place + 2] == '3':
+            count += 1 
+        if int(split[place + 2]) > 3:
+            count2 += 1 
+    if 'cars' in split:
+        place = (split.index('cars'))
+        if split[place + 2] == '2':
+            count += 1
+            count2 += 1
+    if 'perfumes' in split:
+        place = (split.index('perfumes'))
+        if split[place + 2] == '1':
+            count += 1
+            count2 += 1
+    if 'akitas' in split:
+        place = (split.index('akitas'))
+        if split[place + 2] == '0':
+            count += 1 
+            count2 += 1
+    if 'vizslas' in split:
+        place = (split.index('vizslas'))
+        if split[place + 2] == '0':
+            count += 1 
+            count2 += 1
+    if count == 3:
+        print('Part 1 number is',split[1])
+    if count2 == 3:
+        print('Part 2 number is',split[1])
