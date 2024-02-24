@@ -1,0 +1,79 @@
+import itertools
+from itertools import product 
+magic = [['M','S','P','D','R'],['M','D','S','P','R'],['M','D','S','P','R'],['M','D','S','P','R'],['M','D','S','P','R'],['M','D','S','P','R'],['M','S','P','D','R'],['M','S','D','P','R'],['M','D','S','P','R']] 
+fixed = []
+groups = list(product(*magic))
+for x in groups:
+    bosslife = 55
+    boss_dam = 8
+    mylife = 50
+    mana = 500 
+    mspent = 0
+    t = 0
+    arm = 0
+    pt = 0
+    st = 0
+    rt = 0
+    while t < 9:
+        #players turn
+        mylife += -1
+        if mylife <= 0:
+            break
+        if pt > 0:
+            bosslife += -3
+            pt += -1 
+        if rt > 0:
+            mana += 101
+            rt += -1 
+        if x[t] == 'M':
+            bosslife += -4
+            mana += - 53
+            mspent += 53
+        if x[t] == 'D':
+            bosslife += -2
+            mylife += 2
+            mana += -73
+            mspent += 73
+        if x[t]== 'S':
+            arm += 7
+            st += 6
+            mana += -113
+            mspent += 113
+        if x[t] == 'P':
+            pt += 6
+            mana += -173
+            mspent += 173
+        if x[t] == 'R':
+            rt += 5
+            mana += -229
+            mspent += 229 
+        if mylife <= 0:
+            break
+        if mana < 0:
+            break
+        if mylife > 0 and bosslife <= 0:
+            fixed.append(mspent)
+            break
+        #boss turn
+        
+        if pt > 0:
+            bosslife += -3
+            pt += -1   
+        if st == 0:
+            mylife += -8
+        if st > 0:
+            mylife += -1
+            st += -1            
+        if rt > 0:
+            mana += 101
+            rt += -1
+        if mylife > 0 and bosslife <= 0:
+            fixed.append(mspent)
+            break
+        if mylife <= 0 and bosslife > 0:
+            break
+        t +=1
+
+print(min(fixed))
+
+        
