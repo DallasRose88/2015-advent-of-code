@@ -1,0 +1,48 @@
+f = open('code','r')
+cord = []
+x = 0
+y = 0
+start=[0,0]
+cord.append(start)
+for line in f:
+    for l in line:
+        if l == '^':
+            y +=  1
+        if l == 'v':
+            y += -1
+        if l == '<':
+            x += - 1 
+        if l == '>':
+            x += 1 
+        recent = [x,y]
+        if recent not in cord:
+            cord.append(recent)
+#print(cord)
+print('Part 1',len(cord))
+#Day 3.2
+f = open('code','r')
+cord = []
+start=[0,0]
+cord.append(start)
+for line in f:
+    for l in line:
+        santa = line[::2]
+        robot = line[1::2]
+def func(string):
+    x = 0
+    y = 0
+    for s in string:
+        if s == '^':
+            y +=  1
+        if s == 'v':
+            y += -1
+        if s == '<':
+            x += - 1 
+        if s == '>':
+            x += 1 
+        recent = [x,y]
+        if recent not in cord:
+            cord.append(recent)
+func(santa)
+func(robot)
+print('Part 2',len(cord))
