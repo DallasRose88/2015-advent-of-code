@@ -1,0 +1,70 @@
+from itertools import permutations 
+
+#part 1, delete 'Dallas'
+groups = permutations(['Alice','Bob','Carol','David','Eric','Frank','George','Mallory','Dallas'])
+
+f = open('code','r')
+content = f.readlines()
+
+happiness = []
+for i in list(groups): 
+    a =str(i[0])
+    b = str(i[1])
+    c = str(i[2])
+    d = str(i[3])
+    e = str(i[4])
+    g = str(i[5])
+    j = str(i[6])
+    k = str(i[7])
+    l = str(i[8])
+    hap = 0
+    for f in content:
+        h = f.replace('.',' ')
+        split = h.split(' ')
+        if a in split and b in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if b in split and c in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if c in split and d in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if d in split and e in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if e in split and g in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if g in split and j in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if j in split and k in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if k in split and l in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+        if l in split and a in split:
+            if split[2] == 'lose':
+                hap -= int(split[3])
+            else:
+                hap += int(split[3])
+    happiness.append(hap)
+print(max(happiness))
