@@ -1,0 +1,16 @@
+f = open('code','r')
+feet = 0
+feet2 = 0
+for x in f:
+    split = x.split('x')
+    l = int(split[0])
+    w = int(split[1])
+    h = int(split[2])
+    extra = min((l*w),(w*h),(h*l))
+    feet += 2*l*w + 2*w*h + 2*h*l + extra   
+    #part 2
+    biggest = max(l,w,h)
+    extra1 = l*w*h
+    feet2 += (l+l +w+w+h+h-biggest-biggest) + extra1 
+print('Part 1',feet)
+print('Part 2',feet2)
