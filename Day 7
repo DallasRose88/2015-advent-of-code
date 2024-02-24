@@ -1,0 +1,66 @@
+import numpy as np
+f = open('code','r')
+content = f.readlines()
+wires = ['1']
+signal = [1]
+times =150 
+while times > 0:
+    for line in content:
+        #print(line)
+        rem = line.replace('\n','')
+        split = rem.split(' ')
+        if split[1] == '->':
+            if split[2] in wires:
+                continue 
+            else:
+               wires.append(split[2]) 
+               signal.append(split[0])
+        if split[1] == 'AND':
+            if split[4] in wires:
+                continue
+            else:
+                if split[0] in wires and split[2] in wires:
+                    a = wires.index(split[0]) 
+                    b = wires.index(split[2])
+                    c = int(signal[a]) & int(signal[b])
+                    wires.append(split[4])
+                    signal.append(c)
+        if split[1] == 'OR':
+            if split[4] in wires:
+                continue
+            else:
+                if split[0] in wires and split[2] in wires:
+                    a = wires.index(split[0]) 
+                    b = wires.index(split[2])
+                    c = int(signal[a]) | int(signal[b])
+                    wires.append(split[4])
+                    signal.append(c)
+        if split[1] == 'LSHIFT':
+            if split[4] in wires:
+                continue
+            else:
+                if split[0] in wires:
+                    a = wires.index(split[0]) 
+                    c = int(signal[a]) << int(split[2])
+                    wires.append(split[4])
+                    signal.append(c)
+        if split[1] == 'RSHIFT':
+            if split[4] in wires:
+                continue
+            else:
+                if split[0] in wires:
+                    a = wires.index(split[0]) 
+                    c = int(signal[a]) >> int(split[2])
+                    wires.append(split[4])
+                    signal.append(c)
+        if split[0] == 'NOT':
+            if split[3] in wires:
+                continue 
+            else:
+                if split[1] in wires:
+                    a = wires.index(split[1])
+                    c = ~int(signal[a]) & 0xffff
+                    wires.append(split[3])
+                    signal.append(c)
+    times += -1
+print(signal[-1])
