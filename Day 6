@@ -1,0 +1,34 @@
+import numpy
+lights = numpy.zeros((1000,1000))
+f = open('code','r')
+for line in f:
+    remove = line.replace('\n','')
+    rem = remove.replace(',',' ')
+    split = rem.split(' ')
+    if split[1] == 'on':
+        x1 = int(split[2])
+        y1 = int(split[3])
+        x2 = int(split[5])
+        y2 = int(split[6])
+        for x in range(x1, x2 + 1):
+            for y in range(y1, y2 + 1):
+                lights[x][y] += 1
+    if split[1] == 'off':
+        x1 = int(split[2])
+        y1 = int(split[3])
+        x2 = int(split[5])
+        y2 = int(split[6])
+        for x in range(x1, x2 + 1):
+            for y in range(y1, y2 + 1):
+                if lights[x][y] > 0:
+                    lights[x][y] -= 1
+    if split[0] == 'toggle':
+        x3 = int(split[1])
+        y3 = int(split[2])
+        x4 = int(split[4])
+        y4 = int(split[5])
+        for x in range(x3, x4 + 1):
+            for y in range(y3, y4 + 1):
+                lights[x][y] +=2
+print(sum(sum(l) for l in lights))
+#for part 1, change the values of the lights to 0 and 1
