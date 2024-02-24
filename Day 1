@@ -1,0 +1,17 @@
+import sys
+f = ''
+count = 0
+rotation = 0
+for x in f:
+    if x == '(':
+        count += 1
+        rotation += 1
+    if x == ')':
+        count -= 1 
+        rotation += 1
+  #if working on part 1, delete for part 1
+    if count == -1:
+        print('Part 2',rotation)
+        sys.exit()
+#answer part 1, only works if the previous line is deleted 
+print('Part 1', count)
