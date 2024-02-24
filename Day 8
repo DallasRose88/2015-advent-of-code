@@ -1,0 +1,13 @@
+f = open('code','r')
+total = 0
+total2 = 0
+for line in f:
+    rem = line.replace('\n','')
+    total += len(rem) - len(eval(rem))
+    #part 2 
+    num = rem.count('"')
+    n = num
+    t = rem.count('\\') +2    
+    total2 += n+t
+print('Part 1',total)
+print('Part 2',total2)
