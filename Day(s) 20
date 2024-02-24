@@ -1,0 +1,9 @@
+import numpy as np
+
+goal = 33100000
+max_number = goal // 10
+houses = np.zeros(max_number + 1)
+for i in range(1, max_number + 1):
+    houses[i:max_number:i] += 10 * i
+print(np.where(houses >= goal)[0][0])
+#Part 2, change 10 to 11 on line 7, and stop after 50 houses
