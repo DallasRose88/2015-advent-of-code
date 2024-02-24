@@ -1,0 +1,42 @@
+from itertools import permutations 
+
+#get permutations
+groups = permutations(['Tristram','AlphaCentauri','Snowdin','Tambi','Faerun','Norrath','Straylight','Arbre'])
+
+f = open('code','r')
+content = f.readlines()
+
+dists = []
+
+#look at each group
+
+for i in list(groups): 
+    a =(i[0])
+    b = (i[1])
+    c = (i[2])
+    d = (i[3])
+    e = (i[4])
+    g = (i[5])
+    h = (i[6])
+    k = (i[7])
+    dist = 0
+    for f in content:
+        split = f.split(' ')
+        if a in split and b in split:
+            dist += int(split[4])
+        if b in split and c in split:
+            dist += int(split[4])
+        if c in split and d in split:
+            dist += int(split[4])
+        if d in split and e in split:
+            dist += int(split[4])
+        if e in split and g in split:
+            dist += int(split[4])
+        if g in split and h in split:
+            dist += int(split[4])
+        if h in split and k in split:
+            dist += int(split[4])
+    dists.append(dist)
+
+print(min(dists))
+print(max(dists))
