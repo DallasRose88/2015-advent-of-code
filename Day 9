@@ -38,5 +38,5 @@ for i in list(groups):
             dist += int(split[4])
     dists.append(dist)
 
-print(min(dists))
-print(max(dists))
+print('Part 1',min(dists))
+print('Part 2',max(dists))
