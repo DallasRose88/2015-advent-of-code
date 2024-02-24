@@ -1,0 +1,41 @@
+f = open('code', 'r')
+vowels = ['a','e','i','o','u']
+nicelist = 0
+for line in f:
+    if 'ab' in line or 'cd' in line or 'pq' in line or 'xy' in line:
+        continue 
+    count = 0
+    for x in line:
+        if str(x) in vowels:
+            count += 1
+    length = len(line)
+    h = 0 
+    double = 0
+    while h < (length -1):
+        if line[h] == line[h+1]:
+           double += 1 
+        h += 1 
+    if count > 2 and double > 0:
+        nicelist += 1
+print('Part 1', nicelist)
+
+#Day 5.2
+f = open('code', 'r')
+nicelist = 0
+for line in f:
+    count = 0
+    length = len(line)
+    h = 0 
+    m = 0
+    double = 0
+    while h < (length -2):
+        if line[h] == line[h+2]:
+           double += 1 
+        mult = str(line[h])+str(line[h+1])
+        rep = line.count(mult)
+        if rep > 1:
+            m += 1
+        h += 1 
+    if double > 0 and m >0:
+        nicelist += 1 
+print('Part 2',nicelist)
