@@ -1,0 +1,59 @@
+import itertools 
+from itertools import product 
+choices = [['Dag','Short','War','Lon','Gre'],['Lea','Cha','Spli','Ban','Pla','No'],['No','Da1','Da2','Da3','De1','De2','De3'],['No','Da1','Da2','Da3','De1','De2','De3']]
+gold = [[8,10,25,40,74],[13,31,53,75,102,0],[0,25,50,100,20,40,80],[0,25,50,100,20,40,80]]
+perks =[[4,5,6,7,8],[1,2,3,4,5,0],[0,1,2,3,1,2,3],[0,1,2,3,1,2,3]]
+m = list(product(*choices))
+costs = []
+damage = []
+armor = []
+for x in m:
+    one = x.count('Da1')
+    two = x.count('Da2')
+    three = x.count('Da3')
+    four = x.count('De1')
+    five = x.count('De2')
+    six = x.count('De3')
+    if one > 1 or two > 1 or three > 1 or four > 1 or five > 1 or six > 1:
+        continue 
+    cost = 0
+    dam = 0
+    arm = 0
+    d = (choices[0].index((x[0])))
+    a = choices[1].index(x[1])
+    r1 = choices[2].index(x[2])
+    r2 = choices[3].index(x[3])
+    cost += int(gold[0][d]) + int(gold[1][a])+int(gold[2][r1]) + int(gold[3][r2])
+    dam += int(perks[0][d])
+    arm += int(perks[1][a])
+    if 'De' in x[2]:
+        arm += int(perks[2][r1])
+    if 'Da' in x[2]:
+        dam += int(perks[2][r1])
+    if 'De' in x[3]:
+        arm += int(perks[3][r2])
+    if 'Da' in x[3]:
+        dam += int(perks[3][r2])
+    costs.append(cost)
+    damage.append(dam)
+    armor.append(arm)
+part1 = []
+part2 = []
+t = 0
+while t < 1290:
+    boss_life = 100
+    my_life = 100
+    boss_dam = 8
+    boss_arm = 2
+    while my_life > 0:
+        boss_life += -damage[t] + 2
+        if boss_life <= 0 and my_life >0:
+            part1.append(costs[t]) 
+            break
+        my_life += -8 +armor[t]
+        if boss_life > 0 and my_life <= 0:
+            part2.append(costs[t])
+            break 
+    t += 1
+print('Part 1',min(part1))
+print('Part 2', max(part2))
