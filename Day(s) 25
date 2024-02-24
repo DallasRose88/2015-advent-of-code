@@ -1,0 +1,17 @@
+start = 20151125
+row = 1
+collum = 1
+
+
+while True:
+  if row == 1:
+    row = collum + 1
+    collum = 1
+  else:
+    row -= 1
+    collum += 1
+  start = (start * 252533) % 33554393
+
+  if collum == 3083 and row == 2978:
+    print(start)
+    break
