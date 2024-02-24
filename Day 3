@@ -17,8 +17,9 @@ for line in f:
         recent = [x,y]
         if recent not in cord:
             cord.append(recent)
-#print(cord)
+
 print('Part 1',len(cord))
+
 #Day 3.2
 f = open('code','r')
 cord = []
