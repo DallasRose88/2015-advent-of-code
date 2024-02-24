@@ -1,0 +1,21 @@
+f = open('code','r')
+distance = []
+
+for x in f:
+    time = 2503
+    dist = 0
+    split = x.split(' ')
+    speed = int(split[3])
+    length = int(split[6])
+    rest = int(split[13])
+    while time > 0:
+        if time - length >= 0:
+            dist += length*speed
+            time -= length
+        else:
+            dist += speed *time
+            time -= time 
+        time -= rest
+    distance.append(dist)
+
+print(max(distance))
